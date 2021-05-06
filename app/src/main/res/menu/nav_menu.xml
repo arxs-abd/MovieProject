@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_bottom_now_playing"
+        android:icon="@drawable/ic_baseline_local_movies"
+        android:title="Now Playing"/>
+    <item
+        android:id="@+id/nav_bottom_tv_show"
+        android:icon="@drawable/ic_baseline_tv"
+        android:title="TV Show"/>
+
+    <item
+        android:id="@+id/nav_bottom_upcoming"
+        android:icon="@drawable/ic_baseline_not_upcoming"
+        android:title="Upcoming"/>
+
+</menu>
