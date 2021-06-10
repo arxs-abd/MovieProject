@@ -40,11 +40,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(parent.getContext(), DetailActivity.class);
+                List<Integer> l = list.get(viewHolder.getAdapterPosition()).getGenreIds();
+                String aa = "";
+                for (int k : l) {
+                    aa += (aa.isEmpty() ? "" : " ") + k;
+                }
                 String [] imports = {
                         list.get(viewHolder.getAdapterPosition()).getTitle(),
                         list.get(viewHolder.getAdapterPosition()).getOverview(),
                         list.get(viewHolder.getAdapterPosition()).getPosterPath(),
-                        list.get(viewHolder.getAdapterPosition()).getReleaseDate()
+                        list.get(viewHolder.getAdapterPosition()).getReleaseDate(),
+                        list.get(viewHolder.getAdapterPosition()).getVoteAverage() + "",
+                        list.get(viewHolder.getAdapterPosition()).getBackdropPath(),
+                        list.get(viewHolder.getAdapterPosition()).getId() + "",
+                        aa,
                 };
                 a.putExtra("data", imports);
                 parent.getContext().startActivity(a);
@@ -58,11 +67,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MovieAdapter.MyViewHolder holder, int position) {
         holder.tv_titleMovie.setText(list.get(position).getTitle());
         holder.tv_yearMovie.setText(list.get(position).getReleaseDate());
-        Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w185" + list.get(position).getPosterPath())
-                .into(holder.iv_imageMovie);
+        if (list.get(position).getPosterPath() != null) {
+            Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/w185" + list.get(position).getPosterPath())
+                    .into(holder.iv_imageMovie);
 
-
+        } else {
+            holder.iv_imageMovie.setImageResource(R.drawable.poster_noimage);
+        }
     }
 
     @Override

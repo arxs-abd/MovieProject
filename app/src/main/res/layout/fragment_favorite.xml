@@ -3,27 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.NowPlaying">
+    tools:context=".menu.Favorite">
 
+    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--Text If No Movie Found-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_search_status"
-            android:text="No Movie Found"
-            android:layout_marginTop="30px"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_status"
+            android:text="No Favorite Movie"
+            android:layout_centerInParent="true"
             android:visibility="gone"/>
 
-        <!--Recyclerview For Card Movie-->
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rv_now_playing"/>
+            android:id="@+id/rv_favorite"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

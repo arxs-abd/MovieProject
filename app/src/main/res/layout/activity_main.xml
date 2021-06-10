@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--Frame For Now Playing, Popular, Upcoming, and Favorite-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bnv_bottom_nav"
         android:id="@+id/fl_fragment_container"/>
 
+    <!--Navigation View-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

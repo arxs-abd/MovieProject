@@ -10,12 +10,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/rl_card">
 
+        <!--Poster Image Movie-->
         <ImageView
             android:layout_width="400px"
             android:layout_height="400px"
             android:layout_centerHorizontal="true"
             android:id="@+id/iv_imageMovie"/>
 
+        <!--Title Movie-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_below="@+id/iv_imageMovie"/>
 
+        <!--Release Date Movie-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

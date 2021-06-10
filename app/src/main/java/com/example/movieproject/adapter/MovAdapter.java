@@ -2,6 +2,7 @@ package com.example.movieproject.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movieproject.DetailActivity;
 import com.example.movieproject.R;
-import com.example.movieproject.modelTVShow.ResultTVShow;
+import com.example.movieproject.modelMov.GenreMov;
+import com.example.movieproject.modelMov.ResponseMov;
+import com.example.movieproject.modelMovie.ResultMovie;
 
 import java.util.List;
 
-public class TVShowAdapater extends RecyclerView.Adapter<TVShowAdapater.MyViewHolder> {
+public class MovAdapter extends RecyclerView.Adapter<MovAdapter.MyViewHolder> {
     private Context context;
-    private List<ResultTVShow> list;
+    private List<ResponseMov> list;
 
-    public TVShowAdapater(Context context, List<ResultTVShow> list) {
+    public MovAdapter(Context context, List<ResponseMov> list) {
         this.context = context;
         this.list = list;
     }
@@ -34,19 +37,26 @@ public class TVShowAdapater extends RecyclerView.Adapter<TVShowAdapater.MyViewHo
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         view = layoutInflater.inflate(R.layout.layout_item_card, parent, false);
-        TVShowAdapater.MyViewHolder viewHolder = new TVShowAdapater.MyViewHolder(view);
+        MovAdapter.MyViewHolder viewHolder = new MovAdapter.MyViewHolder(view);
 
         viewHolder.rl_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(parent.getContext(), DetailActivity.class);
+                List<GenreMov> g = list.get(viewHolder.getAdapterPosition()).getGenres();
+                String geng = "";
+                for (GenreMov gen : g) {
+                    geng += gen.getId();
+                }
                 String [] imports = {
-                        list.get(viewHolder.getAdapterPosition()).getOriginalName(),
+                        list.get(viewHolder.getAdapterPosition()).getTitle(),
                         list.get(viewHolder.getAdapterPosition()).getOverview(),
                         list.get(viewHolder.getAdapterPosition()).getPosterPath(),
-                        list.get(viewHolder.getAdapterPosition()).getFirstAirDate(),
+                        list.get(viewHolder.getAdapterPosition()).getReleaseDate(),
                         list.get(viewHolder.getAdapterPosition()).getVoteAverage() + "",
                         list.get(viewHolder.getAdapterPosition()).getBackdropPath(),
+                        list.get(viewHolder.getAdapterPosition()).getId() + "",
+                        geng + "",
                 };
                 a.putExtra("data", imports);
                 parent.getContext().startActivity(a);
@@ -58,8 +68,8 @@ public class TVShowAdapater extends RecyclerView.Adapter<TVShowAdapater.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_titleMovie.setText(list.get(position).getOriginalName());
-        holder.tv_yearMovie.setText(list.get(position).getFirstAirDate());
+        holder.tv_titleMovie.setText(list.get(position).getTitle());
+        holder.tv_yearMovie.setText(list.get(position).getReleaseDate());
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w185" + list.get(position).getPosterPath())
                 .into(holder.iv_imageMovie);

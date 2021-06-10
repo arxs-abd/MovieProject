@@ -17,11 +17,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.movieproject.R;
 import com.example.movieproject.adapter.MovieAdapter;
 import com.example.movieproject.api.ApiClient;
@@ -36,10 +34,10 @@ import retrofit2.Callback;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Upcoming#newInstance} factory method to
+ * Use the {@link Popular#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Upcoming extends Fragment {
+public class Popular extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,7 +48,7 @@ public class Upcoming extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Upcoming() {
+    public Popular() {
         // Required empty public constructor
     }
 
@@ -60,11 +58,11 @@ public class Upcoming extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Upcoming.
+     * @return A new instance of fragment Popular.
      */
     // TODO: Rename and change types and number of parameters
-    public static Upcoming newInstance(String param1, String param2) {
-        Upcoming fragment = new Upcoming();
+    public static Popular newInstance(String param1, String param2) {
+        Popular fragment = new Popular();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -83,12 +81,12 @@ public class Upcoming extends Fragment {
 
     List<ResultMovie> mlist;
     RecyclerView rv_content;
-    TextView tv_statusSearch;
     private MovieAdapter adapter;
     String APIKEY = "d8d7d751910a84dbcde954c01050ac8f";
     String lang = "en-US";
-    String category = "upcoming";
+    String category = "popular";
     int PAGE = 1;
+    TextView tv_statusSearch;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -189,7 +187,7 @@ public class Upcoming extends Fragment {
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Search");
+        searchView.setQueryHint(language.equals("en") ? "Search" : "Cari");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -224,12 +222,12 @@ public class Upcoming extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-//                Toast j = Toast.makeText(getContext(), s, Toast.LENGTH_SHORT);
-//                j.show();
                 return false;
             }
         });
         menuItem.setActionView(searchView);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+
 }
